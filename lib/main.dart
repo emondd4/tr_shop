@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tr_shop/Model/Data.dart';
 import 'package:tr_shop/Model/ProductListResponse.dart';
+import 'package:tr_shop/Utils/AppColors.dart';
 
 import 'Utils/AppRoutes.dart';
 
@@ -20,6 +22,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: AppColors.instance.appPrimacyColor
+    ));
+
     return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

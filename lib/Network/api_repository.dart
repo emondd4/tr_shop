@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tr_shop/Model/ProductListBaseResponse.dart';
 import 'package:tr_shop/Model/ProductListResponse.dart';
 import '../Model/Data.dart';
 import 'api_client.dart';
@@ -22,6 +21,8 @@ class ApiRepository {
         ProductListResponse productListResponse = ProductListResponse(status: true,message: "Fetched Successfully",data: productList);
         onSuccess!(productListResponse);
       } else {
+        ProductListResponse productListResponse = ProductListResponse(status: false,message: response.statusMessage,data: null);
+        onFailure!(productListResponse.message.toString());
         debugPrint(response.statusMessage);
       }
       //print("ProductList ${productList.length}");
