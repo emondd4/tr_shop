@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tr_shop/Model/CartModel.dart';
 import 'package:tr_shop/Model/Data.dart';
 import 'package:tr_shop/Model/ProductListResponse.dart';
 import 'package:tr_shop/Utils/AppColors.dart';
@@ -13,7 +14,9 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ProductListResponseAdapter());
   Hive.registerAdapter(DataAdapter());
+  Hive.registerAdapter(CartModelAdapter());
   await Hive.openBox<ProductListResponse>("productList");
+  await Hive.openBox<CartModel>("cart");
   runApp(const MyApp());
 }
 

@@ -42,15 +42,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           color: AppColors.instance.appPrimacyColor),
                     ),
                   ),
-                  Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: AppColors.instance.appPrimacyColor
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+                  InkWell(
+                    onTap: () {
+                      controller.gotoCartPage();
+                    },
+                    child: Container(
+                      height: 48,
+                      width: 48,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: AppColors.instance.appPrimacyColor
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+                      ),
                     ),
                   )
                 ],
@@ -75,7 +80,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           fontWeight: FontWeight.w700,
                           color: AppColors.instance.appSecondaryColor),
                     ),
-                    ElevatedButton(onPressed: () {}, child: Text(
+                    ElevatedButton(onPressed: () {
+                      controller.addProductToCart(controller.productObject.title.toString(), controller.productObject.content.toString(), int.parse(controller.productObject.id.toString()));
+                    }, child: Text(
                       "Add to Cart",
                       style: GoogleFonts.nunito(
                           fontSize: 22.0,

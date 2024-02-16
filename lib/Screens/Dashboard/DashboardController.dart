@@ -25,6 +25,10 @@ class DashboardController extends GetxController{
     Get.toNamed("/productDetails",arguments: {"data":data});
   }
 
+  void gotoCartPage(){
+    Get.toNamed("/cart");
+  }
+
   ///Api Calls
   Future getNoteList() async {
 
