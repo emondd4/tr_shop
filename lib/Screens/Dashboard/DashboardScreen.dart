@@ -101,6 +101,8 @@ class DashboardScreen extends StatelessWidget {
                               fontSize: 20.0,
                               fontWeight: FontWeight.w700,
                               color: AppColors.instance.appSecondaryColor),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           controller.productListResponse.value?.data?[index].content ?? "Loading...",
@@ -114,9 +116,12 @@ class DashboardScreen extends StatelessWidget {
                       ],
                     ),
                   )),
+              const SizedBox(
+                width: 10.0,
+              ),
               Text("\$${controller.productListResponse.value?.data?[index].id}",
                 style: GoogleFonts.nunito(
-                    fontSize: 15.0,
+                    fontSize: 22.0,
                     fontWeight: FontWeight.w600,
                     color: AppColors.instance.appPrimacyColor),
               ),

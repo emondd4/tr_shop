@@ -32,22 +32,17 @@ class _CartScreenState extends State<CartScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Shopping Cart",
-                    style: GoogleFonts.nunito(
-                        fontSize: 26.0,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.instance.appPrimacyColor),
-                  ),
-                  Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: AppColors.instance.appPrimacyColor
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+                  InkWell(onTap:() {
+                    Get.back();
+                  },child: Icon(Icons.arrow_back_ios_new,size: 24.0,color: AppColors.instance.appPrimacyColor,)),
+                  const SizedBox(width: 20.0,),
+                  Expanded(
+                    child: Text(
+                      "Shopping Cart",
+                      style: GoogleFonts.nunito(
+                          fontSize: 26.0,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.instance.appPrimacyColor),
                     ),
                   )
                 ],
@@ -100,6 +95,8 @@ class _CartScreenState extends State<CartScreen> {
                               fontSize: 20.0,
                               fontWeight: FontWeight.w700,
                               color: AppColors.instance.appSecondaryColor),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           controller.cartList.value?[index].des ?? "Loading...",
@@ -113,12 +110,82 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   )),
-              Text("\$${controller.cartList.value?[index].price}",
-                style: GoogleFonts.nunito(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.instance.appPrimacyColor),
+              const SizedBox(
+                width: 10.0,
               ),
+              Column(
+                children: [
+                  Text("\$${controller.cartList.value?[index].price}",
+                    style: GoogleFonts.nunito(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.instance.appPrimacyColor),
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+
+                        },
+                        child: Container(
+                          height: 36.0,
+                          width: 36.0,
+                          decoration: BoxDecoration(
+                            color: AppColors.instance.appPrimacyColor,
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: Center(
+                            child: Text("-",
+                              style: GoogleFonts.nunito(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 36.0,
+                        width: 36.0,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.0)
+                        ),
+                        child: Center(
+                          child: Text(controller.box.getAt(index)?.price.toString() ?? "1",
+                            style: GoogleFonts.nunito(
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.instance.appPrimacyColor),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+
+                        },
+                        child: Container(
+                          height: 36.0,
+                          width: 36.0,
+                          decoration: BoxDecoration(
+                            color: AppColors.instance.appPrimacyColor,
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: Center(
+                            child: Text("+",
+                              style: GoogleFonts.nunito(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         ),

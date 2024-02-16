@@ -24,8 +24,6 @@ class ProductDetailsController extends GetxController {
   Future<void> addProductToCart(String name, String desc, int price) async {
     CartModel cartModel = CartModel(name: name,des: desc,price: price);
     box.add(cartModel);
-
-
   }
 
 }

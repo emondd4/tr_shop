@@ -11,10 +11,18 @@ class CartController extends GetxController{
   void onInit() async{
     //var box = await Hive.openBox('cart');
     List<CartModel> dataList = box.values.toList();
-    print("DataList Length 2:  ${dataList.length}");
+    //print("DataList Length 2:  ${dataList.length}");
     //dataList.add(newData);
     cartList.value = dataList;
     super.onInit();
+  }
+
+  void increaseItem(int index){
+
+  }
+
+  void decreaseItem(int index){
+
   }
 
 }
