@@ -18,11 +18,19 @@ class CartController extends GetxController{
   }
 
   void increaseItem(int index){
-
+    int? tempPrice = box.getAt(index)?.price?.toInt();
+    tempPrice = tempPrice! + 1;
+    box.putAt(index, CartModel(name:box.getAt(index)?.name,des:box.getAt(index)?.des,price: tempPrice));
   }
 
   void decreaseItem(int index){
+    int? tempPrice = box.getAt(index)?.price?.toInt();
+    if (tempPrice! > 1) {
+      tempPrice = tempPrice - 1;
+      box.putAt(index, CartModel(name:box.getAt(index)?.name,des:box.getAt(index)?.des,price: tempPrice));
+    }else{
 
+    }
   }
 
 }
