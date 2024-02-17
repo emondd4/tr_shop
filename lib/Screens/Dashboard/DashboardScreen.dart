@@ -16,12 +16,12 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(71),
-          child: Container(
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(child: Column(
+        children: [
+          Container(
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
@@ -43,8 +43,8 @@ class DashboardScreen extends StatelessWidget {
                       height: 48,
                       width: 48,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: AppColors.instance.appPrimacyColor
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: AppColors.instance.appPrimacyColor
                       ),
                       child: const Center(
                         child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),
@@ -55,12 +55,14 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        body: Obx(() => controller.productListResponse.value?.data?.isEmpty == true ? Center(child: Lottie.asset(AppImages.instance.emptyAnim),) : ListView.builder(
-          itemBuilder: (context, index) => productItem(index),
-          itemCount: controller.productListResponse.value?.data?.length ?? 0,
-        )),
-      ),
+          Expanded(
+            child: Obx(() => controller.productListResponse.value?.data?.isEmpty == true ? Center(child: Lottie.asset(AppImages.instance.emptyAnim),) : ListView.builder(
+              itemBuilder: (context, index) => productItem(index),
+              itemCount: controller.productListResponse.value?.data?.length ?? 0,
+            )),
+          )
+        ],
+      )),
     );
   }
 

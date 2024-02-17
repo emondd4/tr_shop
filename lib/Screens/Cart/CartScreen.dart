@@ -20,12 +20,11 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(71),
-          child: Container(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(child: Column(
+        children: [
+          Container(
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
@@ -49,12 +48,14 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
-        ),
-        body: Obx(() => controller.cartList.value.isEmpty == true ? Center(child: Lottie.asset(AppImages.instance.emptyAnim),) : ListView.builder(
-          itemBuilder: (context, index) => productItem(index),
-          itemCount: controller.cartList.value.length,
-        )),
-      ),
+          Expanded(
+            child: Obx(() => controller.cartList.value.isEmpty == true ? Center(child: Lottie.asset(AppImages.instance.emptyAnim),) : ListView.builder(
+              itemBuilder: (context, index) => productItem(index),
+              itemCount: controller.cartList.value.length,
+            )),
+          )
+        ],
+      )),
     );
   }
 
