@@ -31,9 +31,12 @@ class CartController extends GetxController{
       tempPrice = tempPrice - 1;
       box.putAt(index, CartModel(name:box.getAt(index)?.name,des:box.getAt(index)?.des,price: tempPrice));
       cartList.value = box.values.toList();
-    }else{
-
     }
+  }
+
+  void deleteItem(int index){
+    box.deleteAt(index);
+    cartList.value = box.values.toList();
   }
 
 }

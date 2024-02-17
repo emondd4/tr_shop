@@ -64,6 +64,7 @@ class _CartScreenState extends State<CartScreen> {
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.0),color: Colors.white),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 123,
@@ -85,7 +86,7 @@ class _CartScreenState extends State<CartScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        controller.cartList.value?[index].name ?? "Loading...",
+                        controller.cartList.value[index].name ?? "Loading...",
                         style: GoogleFonts.nunito(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w700,
@@ -94,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        controller.cartList.value?[index].des ?? "Loading...",
+                        controller.cartList.value[index].des ?? "Loading...",
                         style: GoogleFonts.nunito(
                             fontSize: 15.0,
                             fontWeight: FontWeight.w700,
@@ -108,79 +109,86 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               width: 10.0,
             ),
-            Column(
-              children: [
-                Text("\$${controller.cartList.value?[index].price}",
-                  style: GoogleFonts.nunito(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.instance.appPrimacyColor),
-                ),
-                const SizedBox(height: 20,),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        controller.decreaseItem(index);
-                      },
-                      child: Container(
-                        height: 36.0,
-                        width: 36.0,
-                        decoration: BoxDecoration(
-                          color: AppColors.instance.appPrimacyColor,
-                          borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child: Center(
-                          child: Text("-",
-                            style: GoogleFonts.nunito(
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+            SizedBox(
+              height: 123,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("\$${controller.cartList.value[index].price}",
+                    style: GoogleFonts.nunito(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.instance.appPrimacyColor),
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          controller.decreaseItem(index);
+                        },
+                        child: Container(
+                          height: 36.0,
+                          width: 36.0,
+                          decoration: BoxDecoration(
+                            color: AppColors.instance.appPrimacyColor,
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: Center(
+                            child: Text("-",
+                              style: GoogleFonts.nunito(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      height: 36.0,
-                      width: 36.0,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.0)
-                      ),
-                      child: Center(
-                        child: Text(controller.box.getAt(index)?.price.toString() ?? "1",
-                          style: GoogleFonts.nunito(
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.instance.appPrimacyColor),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        controller.increaseItem(index);
-                      },
-                      child: Container(
+                      Container(
                         height: 36.0,
                         width: 36.0,
                         decoration: BoxDecoration(
-                          color: AppColors.instance.appPrimacyColor,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(8.0)
                         ),
                         child: Center(
-                          child: Text("+",
+                          child: Text(controller.box.getAt(index)?.price.toString() ?? "1",
                             style: GoogleFonts.nunito(
-                                fontSize: 22.0,
+                                fontSize: 25.0,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                                color: AppColors.instance.appPrimacyColor),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            )
+                      InkWell(
+                        onTap: () {
+                          controller.increaseItem(index);
+                        },
+                        child: Container(
+                          height: 36.0,
+                          width: 36.0,
+                          decoration: BoxDecoration(
+                            color: AppColors.instance.appPrimacyColor,
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: Center(
+                            child: Text("+",
+                              style: GoogleFonts.nunito(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            InkWell(onTap: () {
+              controller.deleteItem(index);
+            },child: const Icon(Icons.delete,color: Colors.red,size: 30.0,),),
           ],
         ),
       ),
