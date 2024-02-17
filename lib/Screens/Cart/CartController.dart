@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:tr_shop/Model/CartModel.dart';
@@ -21,6 +22,7 @@ class CartController extends GetxController{
     int? tempPrice = box.getAt(index)?.price?.toInt();
     tempPrice = tempPrice! + 1;
     box.putAt(index, CartModel(name:box.getAt(index)?.name,des:box.getAt(index)?.des,price: tempPrice));
+    cartList.value = box.values.toList();
   }
 
   void decreaseItem(int index){
@@ -28,6 +30,7 @@ class CartController extends GetxController{
     if (tempPrice! > 1) {
       tempPrice = tempPrice - 1;
       box.putAt(index, CartModel(name:box.getAt(index)?.name,des:box.getAt(index)?.des,price: tempPrice));
+      cartList.value = box.values.toList();
     }else{
 
     }
