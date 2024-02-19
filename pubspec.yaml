@@ -43,6 +43,11 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: any
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/appIcon.png"
+  adaptive_icon_forground: "assets/appIcon.png"
 
 flutter:
 
