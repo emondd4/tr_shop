@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,7 +68,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    Image.network(controller.productObject.image.toString()),
+                    CachedNetworkImage(
+                      imageUrl: controller.productObject.image.toString(),
+                      errorWidget: (context, url, error) => Padding(
+                        padding: const EdgeInsets.only(top: 50.0,bottom: 50.0),
+                        child: Icon(Icons.broken_image_outlined,size: 64.0,color: AppColors.instance.appPrimacyColor,),
+                      ),
+                      placeholder: (context, url) => Padding(
+                        padding: const EdgeInsets.only(top: 50.0,bottom: 50.0),
+                        child: CircularProgressIndicator(
+                          color: AppColors.instance.appPrimacyColor,
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 20.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +97,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         }, child: Text(
                           "Add to Cart",
                           style: GoogleFonts.nunito(
-                              fontSize: 22.0,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.w700,
                               color: AppColors.instance.appSecondaryColor),
                         ),)

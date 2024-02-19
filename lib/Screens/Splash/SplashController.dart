@@ -8,7 +8,7 @@ class SplashController extends GetxController{
 
   @override
   Future<void> onInit() async {
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 7), () {
       Get.offAndToNamed("/dashboardPage");
     });
     super.onInit();
