@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:tr_shop/Model/CartModel.dart';
@@ -22,8 +23,30 @@ class ProductDetailsController extends GetxController {
   }
 
   Future<void> addProductToCart(String name, String desc, int price) async {
-    CartModel cartModel = CartModel(name: name,des: desc,price: price);
-    box.add(cartModel);
+    bool flag = false;
+    int position = 0;
+
+    for(int i=0;i<box.values.length;i++){
+      if (box.getAt(i)?.price == price) {
+        flag = true;
+        position = i;
+      }
+    }
+
+    if (flag) {
+      CartModel cartModel = CartModel(name: name,des: desc,price: price,quantity: box.getAt(position)!.quantity! + 1);
+      box.putAt(position, cartModel);
+    }  else{
+      CartModel cartModel = CartModel(name: name,des: desc,price: price,quantity: 1);
+      box.add(cartModel);
+    }
+    showToast();
+  }
+
+  void showToast(){
+    ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
+      content: Text("Product Added To Cart"),
+    ));
   }
 
 }

@@ -121,12 +121,54 @@ class DashboardScreen extends StatelessWidget {
               const SizedBox(
                 width: 10.0,
               ),
-              Text("\$${controller.productListResponse.value?.data?[index].id}",
-                style: GoogleFonts.nunito(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.instance.appPrimacyColor),
-              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text("\$${controller.productListResponse.value?.data?[index].id}",
+                        style: GoogleFonts.nunito(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.instance.appPrimacyColor),
+                      ),
+                      const SizedBox(width: 10.0,),
+                      Text("\$${controller.productListResponse.value!.data![index].id! * 3}",
+                        style: GoogleFonts.nunito(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey,
+                          textStyle: const TextStyle(decoration: TextDecoration.lineThrough)
+                        ),
+
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15.0,),
+                  InkWell(
+                    onTap: () {
+                      controller.addProductToCart(controller.productListResponse.value!.data![index].title.toString(), controller.productListResponse.value!.data![index].content.toString(), int.parse(controller.productListResponse.value!.data![index].id.toString()),);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: AppColors.instance.appPrimacyColor
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15.0, 8.0, 15.0, 8.0),
+                        child: Center(
+                          child: Text(
+                              "Add To Cart",
+                            style: GoogleFonts.nunito(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),

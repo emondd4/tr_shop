@@ -115,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("\$${controller.cartList.value[index].price}",
+                  Text("\$${int.parse(controller.cartList.value[index].price.toString()) * int.parse(controller.cartList.value[index].quantity.toString())}",
                     style: GoogleFonts.nunito(
                         fontSize: 22.0,
                         fontWeight: FontWeight.w600,
@@ -153,7 +153,7 @@ class _CartScreenState extends State<CartScreen> {
                           borderRadius: BorderRadius.circular(8.0)
                         ),
                         child: Center(
-                          child: Text(controller.box.getAt(index)?.price.toString() ?? "1",
+                          child: Text(controller.box.getAt(index)?.quantity.toString() ?? "1",
                             style: GoogleFonts.nunito(
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.w600,
